@@ -56,17 +56,17 @@ class SpeechCommandCNN(nn.Module):
     def __init__(self, n_channels=1, n_classes=10, n_filters=32):
         super().__init__()
 
-        self.conv1 = nn.Conv2d(n_channels, n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)  # Kernel for time & frequency
+        self.conv1 = nn.Conv2d(n_channels, n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)
         self.bn1 = nn.BatchNorm2d(n_filters)      
 
-        self.conv2 = nn.Conv2d(n_filters, n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)  # 3x3 kernel to capture local features
+        self.conv2 = nn.Conv2d(n_filters, n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)
         self.bn2 = nn.BatchNorm2d(n_filters)
         self.pool1 = nn.MaxPool2d((2, 2))      
 
-        self.conv3 = nn.Conv2d(n_filters, 2 * n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)  # Larger kernel to capture more complex features
+        self.conv3 = nn.Conv2d(n_filters, 2 * n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)
         self.bn3 = nn.BatchNorm2d(2 * n_filters)      
 
-        self.conv4 = nn.Conv2d(2 * n_filters, 2 * n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)  # Deeper convolution
+        self.conv4 = nn.Conv2d(2 * n_filters, 2 * n_filters, kernel_size=(3, 3), padding=(1, 1), bias=False)
         self.bn4 = nn.BatchNorm2d(2 * n_filters)
         self.pool2 = nn.MaxPool2d((2, 2))
         
